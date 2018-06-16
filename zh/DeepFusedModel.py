@@ -356,12 +356,9 @@ if __name__=="__main__":
 #    _,all_predicates=get_predicates()
 #    all_predicates=all_predicates[:50000,:]
     triples,questions,predicates,subjects,candidates=get_padded_train_data()
+    
     triples2016,questions2016,predicates2016,subjects2016,candidates2016=get_padded_train_data(path=data.test_triple2016_path)
-    triples=triples+triples2016
-    candidates=candidates+candidates2016
-    questions=np.concatenate([questions,questions2016],axis=0)
-    predicates=np.concatenate([predicates,predicates2016],axis=0)
-    subjects=np.concatenate([subjects,subjects2016],axis=0)
+    
     
 #    model.load_weights()
     model.train(questions,subjects,predicates,candidates=candidates,iter_num=15,val_split=0.2)
